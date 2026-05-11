@@ -23,10 +23,14 @@ export default function UserContextProvider({children}){
 	// if the JWT in state updates,
 	// copy the state JWT to local storage to preserve it
 	useEffect(() => {
+		console.log("JWT is updated in global state, value is now: " + jwt)
 		setLsJwt(jwt);
 	}, [jwt, setLsJwt]);
 
-	return <UserContext.Provider value={[jwt, setJwt]}>
+	return <UserContext.Provider value={{
+		jwt: jwt,
+		setJwt: setJwt
+	}}>
 		{children}
 	</UserContext.Provider>
 }
