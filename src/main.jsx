@@ -6,11 +6,12 @@ import HomePage from './pages/HomePage'
 import UserLoginPage from './pages/UserLoginPage'
 import UserProfilePage from './pages/UserProfilePage'
 import UserContext from './contexts/UserContext'
+import UserContextProvider from './components/UserContextProvider'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     
-    <UserContext.Provider value={{email: ""}}>
+    <UserContextProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -18,7 +19,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/profile" element={<UserProfilePage />} />
         </Routes>    
       </BrowserRouter>
-    </UserContext.Provider>
+    </UserContextProvider>
     
     
   </StrictMode>,
