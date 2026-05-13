@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import {playwright} from "@vitest/browser-playwright";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -9,7 +10,20 @@ export default defineConfig({
       "./setup-file.js"
     ],
     browser: {
-      // any special browser config for testing goes here 
-    }
+      enabled: true,
+      provider: playwright(),
+      // https://vitest.dev/config/browser/playwright
+      instances: [
+        {
+          browser: "chromium"
+        },
+        {
+          browser: "firefox"
+        },
+        {
+          browser: "webkit"
+        }
+      ],
+    },
   }
 })
