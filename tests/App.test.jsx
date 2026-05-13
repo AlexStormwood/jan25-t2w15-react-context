@@ -10,7 +10,17 @@ describe("App component tests", () => {
 		expect(screen.getByText("Count is 0")).toBeTruthy();
 	});
 
-	test.skip("App should incremenet the count number when button is clicked", async () => {
+	test("App should increment the count number when button is clicked", async () => {
+		let screen = await page.render(<App />);
+		await expect.element(screen.getByText("Count is 0")).toBeInTheDocument();
+		
+		// await screen.getByRole('button', { name: 'Increment' }).click()
+		
+		await screen.getByText("Count is 0").click();
+		await screen.getByText("Count is 1").click();
+		await screen.getByText("Count is 2").click();
+
+		await expect.element(screen.getByText("Count is 3")).toBeInTheDocument();
 
 	});
 
